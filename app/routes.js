@@ -71,7 +71,27 @@ module.exports = function(app, passport) {
          successRedirect : '/profile',
          failureRedirect : '/'
      }));
+//===========================================
+//google login for Brandeis
+//===========================================
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
+// the callback after google has authenticated the user
+app.get('/auth/google/callback',
+        passport.authenticate('google', {
+                successRedirect : '/profile',
+                failureRedirect : '/'
+        }));
+ //===========================================
+ //SAML login for Brandeis
+ //==========================================
+ app.get('/auth/saml',
+   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+   function(req, res) {
+     res.redirect('/');
+   }
+ );
+ app.get('/auth/facebook/callback',)
  // route for logging out
  app.get('/logout', function(req, res) {
      req.logout();
@@ -81,6 +101,8 @@ module.exports = function(app, passport) {
  var beverages = require('./api/beverages')
  app.use('/beverages', beverages)
 };
+
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
