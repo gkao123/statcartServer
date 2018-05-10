@@ -201,7 +201,7 @@ module.exports = function(passport) {
   // =========================================================================
   passport.use(new SamlStrategy(
     {
-      entryPoint: 'https://adfs.acme_tools.com/adfs/ls/',
+      entryPoint: 'https://login.brandeis.edu/?factors=BRANDEIS.EDU,ldapauth&cosign-shibboleth&https://shibboleth.brandeis.edu/idp/Authn/RemoteUser?conversation=e1s1',
       issuer: 'statcart.com',
       callbackUrl: 'http://localhost:3000/postResponse',
       privateCert: fs.readFileSync('/path/to/acme_tools_com.key', 'utf-8'),
