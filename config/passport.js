@@ -203,7 +203,7 @@ module.exports = function(passport) {
   passport.use(new SamlStrategy(
   {
     path: '/login/callback',
-    entryPoint: 'https://shibboleth.brandeis.edu/idp/shibboleth',
+    entryPoint: 'https://shibboleth.brandeis.edu/idp/profile/Shibboleth/SSO',
     issuer: 'passport-saml'
   },
   function(profile, done) {
