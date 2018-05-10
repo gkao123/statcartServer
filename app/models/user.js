@@ -22,6 +22,13 @@ var userSchema = mongoose.Schema({
     token :String,
     email :String,
     name :String,
+  },
+  saml: {
+    id: String,
+    email: String,
+    displayName: String,
+    firstName: String,
+    lastName: String,
   }
 });
 

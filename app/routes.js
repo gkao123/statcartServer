@@ -91,7 +91,12 @@ app.get('/auth/google/callback',
      res.redirect('/');
    }
  );
- app.get('/auth/facebook/callback',)
+ app.post('/auth/saml/postResponse',
+    passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+    function(req, res) {
+      res.redirect('/');
+    }
+  );
  // route for logging out
  app.get('/logout', function(req, res) {
      req.logout();

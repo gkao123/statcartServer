@@ -2,13 +2,14 @@
 var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var SamlStrategy = require('passport-saml').Strategy
 
 // load up the user model
 var User       = require('../app/models/user');
 
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
-
+var fs = require('fs')
 module.exports = function(passport) {
 
     // =========================================================================
@@ -195,6 +196,64 @@ module.exports = function(passport) {
         });
 
     }));
+    // =========================================================================
+  // Brandeis SAML ==================================================================
+  // =========================================================================
+  passport.use(new SamlStrategy(
+    {
+      entryPoint: 'https://adfs.acme_tools.com/adfs/ls/',
+      issuer: 'statcart.com',
+      callbackUrl: 'https://acme_tools.com/adfs/postResponse',
+      privateCert: fs.readFileSync('/path/to/acme_tools_com.key', 'utf-8'),
+      cert: fs.readFileSync('/path/to/adfs.acme_tools.com.crt', 'utf-8'),
+
+      //stuff below extra
+    // other authn contexts are available e.g. windows single sign-on
+      authnContext: 'http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password',
+    // not sure if this is necessary?
+      acceptedClockSkewMs: -1,
+      identifierFormat: null,
+    // this is configured under the Advanced tab in AD FS relying party
+      signatureAlgorithm: 'sha256'
+    },
+    function(profile, done) {
+      return done(null,
+        {
+          id: profile.uid,
+          email: profile.email,
+          displayName: profile.cn,
+          firstName: profile.givenName,
+          lastName: profile.sn
+        });
+    }
+  ));
+      entryPoint: 'https://adfs.acme_tools.com/adfs/ls/',
+      issuer: 'statcart.com',
+      callbackUrl: 'https://acme_tools.com/adfs/postResponse',
+      privateCert: fs.readFileSync('/path/to/acme_tools_com.key', 'utf-8'),
+      cert: fs.readFileSync('/path/to/adfs.acme_tools.com.crt', 'utf-8'),
+
+      //stuff below extra
+    // other authn contexts are available e.g. windows single sign-on
+      authnContext: 'http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password',
+    // not sure if this is necessary?
+      acceptedClockSkewMs: -1,
+      identifierFormat: null,
+    // this is configured under the Advanced tab in AD FS relying party
+      signatureAlgorithm: 'sha256'
+    },
+    function(profile, done) {
+      return done(null,
+        {
+          id: profile.uid,
+          email: profile.email,
+          displayName: profile.cn,
+          firstName: profile.givenName,
+          lastName: profile.sn
+        });
+    }
+  ));
+    // =====================
     // =========================================================================
   // GOOGLE ==================================================================
   // =========================================================================
