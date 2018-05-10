@@ -85,22 +85,22 @@ app.get('/auth/google/callback',
  //===========================================
  //SAML login for Brandeis
  //==========================================
- app.get('/auth/saml',
-   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
-   {
-      failureRedirect: '/',
-      failureFlash: true
-    }),
-  function (req, res) {
-    res.redirect('/');
-  }
- );
- app.post('/auth/saml/postResponse',
-    passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
-    function(req, res) {
-      res.redirect('/');
-    }
-  );
+//  app.get('/auth/saml',
+//    passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+//    {
+//       failureRedirect: '/',
+//       failureFlash: true
+//     }),
+//   function (req, res) {
+//     res.redirect('/');
+//   }
+// });
+//  app.post('/auth/saml/postResponse',
+//     passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+//     function(req, res) {
+//       res.redirect('/');
+//     }
+//   );
  // route for logging out
  app.get('/logout', function(req, res) {
      req.logout();
