@@ -199,6 +199,23 @@ module.exports = function(passport) {
     // =========================================================================
   // Brandeis SAML ==================================================================
   // =========================================================================
+
+  passport.use(new SamlStrategy(
+  {
+    path: '/login/callback',
+    entryPoint: 'https://shibboleth.brandeis.edu/idp/shibboleth',
+    issuer: 'passport-saml'
+  },
+  function(profile, done) {
+    findByEmail(profile.email, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      return done(null, user);
+    });
+  })
+);
+
   // passport.use(new SamlStrategy(
   //   {
   //     entryPoint: 'https://login.brandeis.edu/?factors=BRANDEIS.EDU,ldapauth&cosign-shibboleth&https://shibboleth.brandeis.edu/idp/Authn/RemoteUser?conversation=e1s1',
