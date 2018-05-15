@@ -1,0 +1,12 @@
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="_8c12dac1-d47a-4790-8193-b41ce2031a92" entityID="http://localhost:3122">
+<md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+<md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:3122/auth/saml/callback" index="0" isDefault="true"/>
+<md:AttributeConsumingService index="1" isDefault="true">
+<md:ServiceName xml:lang="en">Required attributes</md:ServiceName>
+<md:RequestedAttribute FriendlyName="uid" Name="uid" isRequired="false"/>
+<md:RequestedAttribute FriendlyName="mail" Name="mail;eppn" NameFormat="name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient" isRequired="false"/>
+<md:RequestedAttribute FriendlyName="givenName" Name="givenName" NameFormat="name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient" isRequired="false"/>
+<md:RequestedAttribute FriendlyName="sn" Name="sn" NameFormat="name_identifier_format:urn:oasis:names:tc:SAML:2.0:nameid-format:transient" isRequired="false"/>
+</md:AttributeConsumingService>
+</md:SPSSODescriptor>
+</md:EntityDescriptor>
