@@ -108,12 +108,12 @@ app.get('/auth/google/callback',
  //    }
  //  );
 
-//  app.get('/auth/saml/',
-//    passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
-//   function (req, res) {
-//     res.redirect('/');
-//   }
-// );
+ app.get('/auth/saml/',
+   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+  function (req, res) {
+    res.redirect('/');
+  }
+);
 
 
  app.post('/auth/saml/postResponse',
