@@ -111,6 +111,14 @@ app.get('/auth/google/callback',
     res.redirect('/profile');
   }
 );
+
+ app.get('/login/callback',
+   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+  function (req, res) {
+    res.redirect('/profile');
+  }
+);
+
  // route for logging out
  app.get('/logout', function(req, res) {
      req.logout();
