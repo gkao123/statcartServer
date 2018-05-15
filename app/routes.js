@@ -116,12 +116,6 @@ app.get('/auth/google/callback',
 );
 
 
- app.get('/auth/saml/callback',
-   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
-  function (req, res) {
-    res.redirect('/');
-  }
-);
  app.post('/auth/saml/postResponse',
     passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
     function(req, res) {
@@ -129,12 +123,7 @@ app.get('/auth/google/callback',
     }
   );
 
- app.get('/auth/login/callback',
-   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
-  function (req, res) {
-    res.redirect('/');
-  }
-);
+
  // route for logging out
  app.get('/logout', function(req, res) {
      req.logout();
