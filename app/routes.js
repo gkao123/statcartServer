@@ -112,16 +112,16 @@ app.get('/auth/google/callback',
   }
 );
 
-  app.post('/login/callback',
-    passport.authenticate('saml',
-      {
-        failureRedirect: '/',
-        failureFlash: true
-      }),
-    function (req, res) {
-      res.redirect('/');
-    }
-  );
+  // app.post('/login/callback',
+  //   passport.authenticate('saml',
+  //     {
+  //       failureRedirect: '/',
+  //       failureFlash: true
+  //     }),
+  //   function (req, res) {
+  //     res.redirect('/');
+  //   }
+  // );
 
 //  app.get('/login/callback',
 //    passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
