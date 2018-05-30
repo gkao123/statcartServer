@@ -204,8 +204,7 @@ module.exports = function(passport) {
   {
     path: '/auth/saml/callback',
     entryPoint: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
-    issuer: 'statcart.herokuapp.com',
-    protocol: 'https://'
+    issuer: 'statcart.herokuapp.com'
   },
   function(profile, done) {
     findByEmail(profile.email, function(err, user) {
