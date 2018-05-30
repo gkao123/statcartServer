@@ -86,7 +86,7 @@ app.get('/auth/google/callback',
  //SAML login for Brandeis
  //==========================================
 
- app.post('/auth/login/callback',
+ app.post('/auth/saml/callback',
     passport.authenticate('saml',
       {
         failureRedirect: '/',
