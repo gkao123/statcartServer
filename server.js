@@ -9,6 +9,7 @@ var port     = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
+var fs = require('fs');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -16,6 +17,9 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
  var configDB = require('./config/userdb.js');
+
+var publicCert = fs.readFileSync('./config/cert/idp_cert1.pem', 'utf8');
+var privateKey = fs.readFileSync('./config/cert/cert.pem', 'utf8');
 //
 // // configuration ===============================================================
  mongoose.connect(configDB.url); // connect to our database
@@ -45,5 +49,15 @@ app.use(function(req, res, next) {
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
-app.listen(port);
+
+var httpsServer = https.createServer({
+    key: privateKey,
+    cert: publicCert
+}, app);
+
+httpsServer.listen(443, function(){
+    console.log('Listening for HTTPS requests on port %d', httpsServer.address().port)
+});
+
+//app.listen(port);
 console.log('The magic happens on port ' + port);
