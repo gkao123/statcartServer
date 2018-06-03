@@ -75,7 +75,7 @@ httpsServer.listen(httpsPort, function(){
 //create an HTTP server that always redirects the user to
 //the equivallent HTTPS URL instead
 var httpServer = http.createServer(function(req, res) {
-    var redirUrl = 'https://' + 'statcart.herokuapp.com';
+    var redirUrl = 'https://' + 'statcart.herokuapp.com/';
     if (httpsPort != 443)
         redirUrl += ':' + httpsPort;
     redirUrl += req.url;
