@@ -216,7 +216,6 @@ module.exports = function(passport) {
     // cert: fs.readFileSync(__dirname + '/cert/idp_cert1.pem', 'utf8'),
     // validateInResponseTo: false,
       // disableRequestedAuthnContext: true,
-
   },
   function(profile, done) {
     findByEmail(profile.email, function(err, user) {
