@@ -206,7 +206,7 @@ module.exports = function(passport) {
   //  callbackUrl: 'https://statcart.herokuapp.com/auth/saml/callback'
     path: '/auth/saml/callback',
     entryPoint: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
-    issuer: 'statcart.herokuapp.com/shibboleth',
+    issuer: 'statcart.herokuapp.com',
     passReqToCallback: true
     // // Service Provider private key
     // decryptionPvk: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
