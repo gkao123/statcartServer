@@ -63,14 +63,14 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 //
 
 //create the HTTPS server and pass the express app as the handler
-var httpsServer = https.createServer({
-    key: privateKey,
-    cert: publicCert
-}, app);
-
-httpsServer.listen(httpsPort, function(){
-    console.log('Listening for HTTPS requests on port %d', httpsServer.address().port)
-});
+// var httpsServer = https.createServer({
+//     key: privateKey,
+//     cert: publicCert
+// }, app);
+//
+// httpsServer.listen(httpsPort, function(){
+//     console.log('Listening for HTTPS requests on port %d', httpsServer.address().port)
+// });
 
 //create an HTTP server that always redirects the user to
 //the equivallent HTTPS URL instead
