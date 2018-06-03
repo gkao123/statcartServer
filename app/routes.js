@@ -137,6 +137,10 @@ app.get('/auth/google/callback',
 };
 
 
+app.get('/shibboleth', (req, res) => {
+  res.status(200).send(passport.strategy
+    .generateServiceProviderMetadata());
+});
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
