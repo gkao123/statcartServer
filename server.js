@@ -18,8 +18,9 @@ var session      = require('express-session');
 
  var configDB = require('./config/userdb.js');
 
-var publicCert = fs.readFileSync('./config/cert/idp_cert1.pem', 'utf8');
-var privateKey = fs.readFileSync('./config/cert/cert.pem', 'utf8');
+var publicCert = fs.readFileSync(__dirname + '/config/cert/cert.pem', 'utf8')
+var privateKey = fs.readFileSync(__dirname + '/config/cert/key.pem', 'utf8')
+
 //
 // // configuration ===============================================================
  mongoose.connect(configDB.url); // connect to our database
