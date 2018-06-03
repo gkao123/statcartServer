@@ -4,6 +4,7 @@
 // get all the tools we need
 var express  = require('express');
 var app      = express();
+var https = require('https');                   //https server
 var port     = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -38,6 +39,7 @@ app.use(function(req, res, next) {
     var reqType = req.headers["x-forwarded-proto"];
     reqType == 'https' ? next() : res.redirect("https://" + req.headers.host + req.url);
 });
+
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
