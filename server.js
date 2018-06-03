@@ -44,46 +44,20 @@ app.set('view engine', 'ejs'); // set up ejs for templating
  app.use(passport.session()); // persistent login sessions
  app.use(flash()); // use connect-flash for flash messages stored in session
 
-// app.use(function(req, res, next) {
-//     var reqType = req.headers["x-forwarded-proto"];
-//     reqType == 'https' ? next() : res.redirect("https://" + req.headers.host + req.url);
-// });
+app.use(function(req, res, next) {
+    var reqType = req.headers["x-forwarded-proto"];
+    reqType == 'https' ? next() : res.redirect("https://" + req.headers.host + req.url);
+});
 
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
-// app.listen(port);
-// console.log('The magic happens on port ' + port);
+app.listen(port);
+console.log('The magic happens on port ' + port);
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // web server creation and startup
 //
-
-//create the HTTPS server and pass the express app as the handler
-var httpsServer = https.createServer({
-    key: privateKey,
-    cert: publicCert
-}, app);
-
-httpsServer.listen(httpsPort, function(){
-    console.log('Listening for HTTPS requests on port %d', httpsServer.address().port)
-});
-
-//create an HTTP server that always redirects the user to
-//the equivallent HTTPS URL instead
-var httpServer = http.createServer(function(req, res) {
-    var redirUrl = 'https://' + 'statcart.herokuapp.com/';
-    if (httpsPort != 443)
-        redirUrl += ':' + httpsPort;
-    redirUrl += req.url;
-
-    res.writeHead(301, {'Location': redirUrl});
-    res.end();
-});
-
-httpServer.listen(httpPort, function() {
-    console.log('Listening for HTTP requests on port %d, but will auto-redirect to HTTPS', httpServer.address().port);
-});
