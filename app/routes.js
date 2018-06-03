@@ -98,7 +98,7 @@ app.get('/auth/google/callback',
 );
 
 
- app.post('/auth/saml/callback',
+ app.post('/users/auth/saml/callback',
     passport.authenticate('saml',
       {
         failureRedirect: '/',
