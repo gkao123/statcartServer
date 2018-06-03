@@ -203,8 +203,8 @@ module.exports = function(passport) {
 
   passport.use(new SamlStrategy(
   {
-  //  callbackUrl: 'https://statcart.herokuapp.com/auth/saml/callback'
-    path: '/users/auth/saml/callback',
+   callbackUrl: 'https://statcart.herokuapp.com/users/auth/saml/callback',
+  //  path: '/login/callback',
     entryPoint: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
     issuer: 'http://statcart.herokuapp.com',
     passReqToCallback: true,
