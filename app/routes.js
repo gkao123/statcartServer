@@ -56,9 +56,9 @@ module.exports = function(app, passport) {
         });
     });
 
-// app.get('/shibboleth', (req, res) => {
-//   res.status(200).send(passport.strategy.generateServiceProviderMetadata(fs.readFileSync('../config/cert/cert.pem', 'utf8')));
-// });
+app.get('/shibboleth', (req, res) => {
+  res.status(200).send(passport.strategy.generateServiceProviderMetadata());
+});
 
 
    // =====================================
