@@ -5,7 +5,7 @@
 var express  = require('express');
 var app      = express();
 var https = require('https');                   //https server
-var port     = process.env.PORT || 3000;
+var port     = process.env.PORT || 3002;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -40,10 +40,10 @@ app.set('view engine', 'ejs'); // set up ejs for templating
  app.use(passport.session()); // persistent login sessions
  app.use(flash()); // use connect-flash for flash messages stored in session
 
-app.use(function(req, res, next) {
-    var reqType = req.headers["x-forwarded-proto"];
-    reqType == 'https' ? next() : res.redirect("https://" + req.headers.host + req.url);
-});
+// app.use(function(req, res, next) {
+//     var reqType = req.headers["x-forwarded-proto"];
+//     reqType == 'https' ? next() : res.redirect("https://" + req.headers.host + req.url);
+// });
 
 
 // routes ======================================================================
@@ -56,9 +56,9 @@ var httpsServer = https.createServer({
     cert: publicCert
 }, app);
 
-httpsServer.listen(443, function(){
+httpsServer.listen('443', function(){
     console.log('Listening for HTTPS requests on port %d', httpsServer.address().port)
 });
 
-//app.listen(port);
+// app.listen(port);
 console.log('The magic happens on port ' + port);
