@@ -207,7 +207,7 @@ module.exports = function(passport) {
     path: '/users/auth/saml/callback',
     entryPoint: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
     issuer: 'statcart.herokuapp.com',
-    passReqToCallback: true
+    passReqToCallback: true,
     // Service Provider private key
     decryptionPvk: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
     // Service Provider Certificate
@@ -215,7 +215,7 @@ module.exports = function(passport) {
     // Identity Provider's public key
     cert: fs.readFileSync(__dirname + '/cert/idp_cert1.pem', 'utf8'),
     validateInResponseTo: false,
-      disableRequestedAuthnContext: true,
+      disableRequestedAuthnContext: true
   },
   function(profile, done) {
     findByEmail(profile.email, function(err, user) {
