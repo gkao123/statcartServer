@@ -209,11 +209,11 @@ var samlStrategy = new SamlStrategy(
   issuer: 'statcart.herokuapp.com',
   passReqToCallback: true,
   // // // Service Provider private key
-  // decryptionPvk: fs.readFileSync(__dirname + '/cert/privateKey.key', 'utf8'),
+  decryptionPvk: fs.readFileSync(__dirname + '/cert/private.pem', 'utf8'),
   // // // // Service Provider Certificate
-  // privateCert: fs.readFileSync(__dirname + '/cert/certificate.crt', 'utf8'),
+  privateCert: fs.readFileSync(__dirname + '/cert/certificate.pem', 'utf8'),
   // // // // Identity Provider's public key
-  // cert: fs.readFileSync(__dirname + '/cert/deiscert.crt', 'utf8'),
+  cert: fs.readFileSync(__dirname + '/cert/deiscert.pem', 'utf8'),
   validateInResponseTo: false,
     disableRequestedAuthnContext: true
 },
@@ -233,7 +233,7 @@ passport.use(samlStrategy);
 //         res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
 //     }
 // );
-var cert = fs.readFileSync('./config/cert/certificate.crt', 'utf-8');
+var cert = fs.readFileSync('./config/cert/certificate.pem', 'utf-8');
 app.get('/users/auth/saml/metadata',
     function(req, res) {
         res.type('application/xml');
