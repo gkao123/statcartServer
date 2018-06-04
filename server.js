@@ -20,8 +20,8 @@ var session      = require('express-session');
 
  var configDB = require('./config/userdb.js');
 
-var publicCert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
-var privateKey = fs.readFileSync('./config/cert/key.pem', 'utf-8');
+var publicCert = fs.readFileSync('./config/cert/certificate.crt', 'utf-8');
+var privateKey = fs.readFileSync('./config/cert/privateKey.key', 'utf-8');
 var httpPort = process.env.HTTPPORT || 80;
 var httpsPort = process.env.HTTPSPORT || 443;
 
