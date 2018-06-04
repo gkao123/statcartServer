@@ -233,11 +233,11 @@ passport.use(samlStrategy);
 //         res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
 //     }
 // );
-var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
+var cert = fs.readFileSync('./config/cert/certificate.crt', 'utf-8');
 app.get('/users/auth/saml/metadata',
     function(req, res) {
         res.type('application/xml');
-        res.send(200, samlStrategy.generateServiceProviderMetadata());
+        res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
     }
 );
 
