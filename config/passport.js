@@ -225,7 +225,7 @@ exports.samlStrategy = samlStrategy;
 
   passport.use(samlStrategy);
 
-var cert = fs.readFileSync('./cert/cert.pem', 'utf-8');
+var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
 
 app.get('/Shibboleth.sso/Metadata',
     function(req, res) {
