@@ -201,27 +201,29 @@ module.exports = function(passport) {
   // Brandeis SAML ==================================================================
   // =========================================================================
 
-  passport.use(new SamlStrategy(
-  {
-   callbackUrl: 'https://statcart.herokuapp.com/users/auth/saml/callback',
-  //  path: '/login/callback',
-    entryPoint: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
-    issuer: 'statcart.herokuapp.com',
-    passReqToCallback: true,
-    // // // Service Provider private key
-    // decryptionPvk: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
-    // // // Service Provider Certificate
-    privateCert: fs.readFileSync(__dirname + '/cert/cert.pem', 'utf8'),
-    // // // Identity Provider's public key
-    cert: "MIIDSDCCAjCgAwIBAgIVAJ07ki+U+Q1jeqL9/EKoyRbWCMAyMA0GCSqGSIb3DQEBBQUAMCIxIDAeBgNVBAMTF3NoaWJib2xldGguYnJhbmRlaXMuZWR1MB4XDTEzMDMwODIwMTczOVoXDTMzMDMwODIwMTczOVowIjEgMB4GA1UEAxMXc2hpYmJvbGV0aC5icmFuZGVpcy5lZHUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCKZIwWKwP8VTEQc8aR/fukHycUON1HPpq7LoIjINdzuzMR2C6ZdNRMzbR+4qkQRdeW6Ptp9L7C0HMEeIPRhEFh6gdAgl3VwyyDgz/fqMHpXNQn/7Tw+vl3I2Joha69iNQK3K6IgNI2E/x2b8YizudhSSCu3RAm7vPLN3gcyc2sRA3KkXvaEWO0jU7GJVTmaCgRpCH0Bsv5vZ724UMuuPP1Feu4nhKtqRm0khEA9svRGfDVxhWnPpg8rLThN8hdqNspAQCmDI2OFQB5frAuiQ9MQT7Q9jzBSJ3bcWQsYsdbWNG7Hpl2hBSlUtqR5tzatiU1U1LsZAv/wQbgLAgMBAAGjdTBzMFIGA1UdEQRLMEmCF3NoaWJib2xldGguYnJhbmRlaXMuZWR1hi5odHRwczovL3NoaWJib2xldGguYnJhbmRlaXMuZWR1L2lkcC9zaGliYm9sZXRoMB0GA1UdDgQWBBQPTVgZcvtUxjYUCn8mj6n/ldo5zjANBgkqhkiG9w0BAQUFAAOCAQEAVGtWGwmb6iIG3sbWiBvuayHCmiWCl3rZN/CpFYxU5p9Xcuu6lcTq6wAY04Cs/v4rjStdsH1REnI6CUyOcLzVCK55bhpyvLCTxQYAaULVg95UmZF2Kkr0LXmXHkOfG7nTwY8Qm13tfBAPwqNdHmstlMvw3LAgmy96heq+bHryqbTYKC/VdTdUuhV14vl7PJt9y3EqXISJjwNG7wEF9wM0qUIG51qlp4iNaNxJI/cYUC1cw7d/XK0tGHAwQxu/IeOIxUYbsUbTSua3u/Xc6WaTwfWxSl96NcOuTnyazB4hkSIYaC30ze3MSAph0HLqEHTWk8Ldt2Y3QWku9g5WNlA==",
-    validateInResponseTo: false,
-      disableRequestedAuthnContext: true
-  },
-  function(profile, done) {
-    console.log('Profile: %j', profile);
-    return done(null, profile);
-  })
-);
+var samlStrategy = new SamlStrategy(
+{
+ callbackUrl: 'https://statcart.herokuapp.com/users/auth/saml/callback',
+//  path: '/login/callback',
+  entryPoint: 'https://shibboleth.brandeis.edu/idp/profile/SAML2/Redirect/SSO',
+  issuer: 'statcart.herokuapp.com',
+  passReqToCallback: true,
+  // // // Service Provider private key
+  // decryptionPvk: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
+  // // // Service Provider Certificate
+  // privateCert: fs.readFileSync(__dirname + '/cert/key.pem', 'utf8'),
+  // // // Identity Provider's public key
+  // cert: fs.readFileSync(__dirname + '/cert/idp_cert1.pem', 'utf8'),
+  validateInResponseTo: false,
+    disableRequestedAuthnContext: true
+},
+function(profile, done) {
+  console.log('Profile: %j', profile);
+  return done(null, profile);
+});
+exports.samlStrategy = samlStrategy;
+
+  passport.use(samlStrategy);
 
   // passport.use(new SamlStrategy(
   //   {
