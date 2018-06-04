@@ -65,7 +65,7 @@ var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
 app.get('/Shibboleth.sso/Metadata',
     function(req, res) {
         res.type('application/xml');
-        res.send(200, passport.samlStrategy.generateServiceProviderMetadata(cert));
+        res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
     }
 );
 
