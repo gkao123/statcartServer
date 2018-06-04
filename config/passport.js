@@ -221,11 +221,11 @@ function(profile, done) {
   console.log('Profile: %j', profile);
   return done(null, profile);
 });
+
 exports.samlStrategy = samlStrategy;
+passport.use(samlStrategy);
 
-  passport.use(samlStrategy);
 
-var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
 
 // app.get('/Shibboleth.sso/Metadata',
 //     function(req, res) {
@@ -233,11 +233,11 @@ var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
 //         res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
 //     }
 // );
-
+var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
 app.get('/users/auth/saml/metadata',
     function(req, res) {
         res.type('application/xml');
-        res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
+        res.send(200, samlStrategy.generateServiceProviderMetadata());
     }
 );
 
