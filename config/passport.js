@@ -209,9 +209,9 @@ var samlStrategy = new SamlStrategy(
   issuer: 'statcart.herokuapp.com',
   passReqToCallback: true,
   // // // Service Provider private key
-  // decryptionPvk: fs.readFileSync(__dirname + '/cert/private.pem', 'utf8'),
+  decryptionPvk: fs.readFileSync(__dirname + '/cert/private.pem', 'utf8'),
   // // // // Service Provider Certificate
-  privateCert: fs.readFileSync(__dirname + '/cert/certificate.pem', 'utf8'),
+  // privateCert: fs.readFileSync(__dirname + '/cert/certificate.pem', 'utf8'),
   // // // // Identity Provider's public key
   cert: fs.readFileSync(__dirname + '/cert/deiscert.pem', 'utf8'),
   validateInResponseTo: false,
