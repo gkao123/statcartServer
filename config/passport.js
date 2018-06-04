@@ -227,7 +227,14 @@ exports.samlStrategy = samlStrategy;
 
 var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
 
-app.get('/Shibboleth.sso/Metadata',
+// app.get('/Shibboleth.sso/Metadata',
+//     function(req, res) {
+//         res.type('application/xml');
+//         res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
+//     }
+// );
+
+app.get('/users/auth/saml/metadata',
     function(req, res) {
         res.type('application/xml');
         res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
