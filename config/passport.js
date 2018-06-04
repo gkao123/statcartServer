@@ -213,7 +213,7 @@ var samlStrategy = new SamlStrategy(
   // // // // Service Provider Certificate
   // privateCert: fs.readFileSync(__dirname + '/cert/certificate.pem', 'utf8'),
   // // // // Identity Provider's public key
-  cert: fs.readFileSync(__dirname + '/cert/deiscert.pem', 'utf8'),
+  // cert: fs.readFileSync(__dirname + '/cert/deiscert.pem', 'utf8'),
   validateInResponseTo: false,
     disableRequestedAuthnContext: true
 },
