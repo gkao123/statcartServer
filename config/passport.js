@@ -209,11 +209,11 @@ var samlStrategy = new SamlStrategy(
   issuer: 'statcart.herokuapp.com',
   passReqToCallback: true,
   // // // Service Provider private key
-  decryptionPvk: fs.readFileSync(__dirname + '/cert/privateKey.key', 'utf8'),
-  // // // Service Provider Certificate
-  privateCert: fs.readFileSync(__dirname + '/cert/certificate.crt', 'utf8'),
-  // // // Identity Provider's public key
-  cert: fs.readFileSync(__dirname + '/cert/deiscert.crt', 'utf8'),
+  // decryptionPvk: fs.readFileSync(__dirname + '/cert/privateKey.key', 'utf8'),
+  // // // // Service Provider Certificate
+  // privateCert: fs.readFileSync(__dirname + '/cert/certificate.crt', 'utf8'),
+  // // // // Identity Provider's public key
+  // cert: fs.readFileSync(__dirname + '/cert/deiscert.crt', 'utf8'),
   validateInResponseTo: false,
     disableRequestedAuthnContext: true
 },
