@@ -218,7 +218,7 @@ var samlStrategy = new SamlStrategy(
     disableRequestedAuthnContext: true
 },
 function(profile, done) {
-  console.log('Profile: %j', profile);
+  console.log('Profile: test', profile);
   return done(null, profile);
 });
 
