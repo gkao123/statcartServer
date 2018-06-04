@@ -60,14 +60,7 @@ var fs = require('fs');
 //   res.status(200).send(passport.strategy.generateServiceProviderMetadata());
 // });
 
-var cert = fs.readFileSync('./config/cert/cert.pem', 'utf-8');
 
-app.get('/Shibboleth.sso/Metadata',
-    function(req, res) {
-        res.type('application/xml');
-        res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
-    }
-);
 
    // =====================================
  // FACEBOOK ROUTES =====================

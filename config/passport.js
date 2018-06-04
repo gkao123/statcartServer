@@ -11,7 +11,7 @@ var User       = require('../app/models/user');
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
 var fs = require('fs')
-module.exports = function(passport) {
+module.exports = function(app,passport) {
 
     // =========================================================================
     // passport session setup ==================================================
@@ -224,6 +224,15 @@ function(profile, done) {
 exports.samlStrategy = samlStrategy;
 
   passport.use(samlStrategy);
+
+var cert = fs.readFileSync('./cert/cert.pem', 'utf-8');
+
+app.get('/Shibboleth.sso/Metadata',
+    function(req, res) {
+        res.type('application/xml');
+        res.send(200, samlStrategy.generateServiceProviderMetadata(cert));
+    }
+);
 
   // passport.use(new SamlStrategy(
   //   {

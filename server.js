@@ -29,7 +29,7 @@ var httpsPort = process.env.HTTPSPORT || 443;
 // // configuration ===============================================================
  mongoose.connect(configDB.url); // connect to our database
 
-var testStrategty = require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(app,passport); // pass passport for configuration
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
