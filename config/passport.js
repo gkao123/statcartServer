@@ -221,7 +221,7 @@ function(profile, done) {
   console.log('Profile: test', profile);
   return done(null, profile);
 });
-
+//
 exports.samlStrategy = samlStrategy;
 passport.use(samlStrategy);
 
