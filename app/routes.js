@@ -1,6 +1,6 @@
 // app/routes.js
 module.exports = function(app, passport) {
-
+var fs = require('fs');
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
