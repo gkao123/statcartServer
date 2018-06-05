@@ -92,7 +92,7 @@ app.get('/auth/google/callback',
  //==========================================
 
  app.get('/auth/saml/',
-   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+   passport.authenticate('saml', { failureRedirect: '/', successRedirect: '/profile', failureFlash: true }),
   function (req, res) {
     res.redirect('/');
   }
@@ -102,6 +102,7 @@ app.get('/auth/google/callback',
  app.post('/users/auth/saml/callback',
     passport.authenticate('saml',
       {
+        successRedirect: '/profile',
         failureRedirect: '/',
         failureFlash: true
       }),
