@@ -91,12 +91,18 @@ app.get('/auth/google/callback',
  //SAML login for Brandeis
  //==========================================
 
- app.get('/auth/saml/',
-   passport.authenticate('saml', { failureRedirect: '/', successRedirect: '/profile', failureFlash: true }),
-  function (req, res) {
-    res.redirect('/');
+app.get('/auth/saml/', passport.authenticate('saml'),
+  (req, res) => {
+      res.redirect('/');
   }
 );
+
+//  app.get('/auth/saml/',
+//    passport.authenticate('saml', { failureRedirect: '/', successRedirect: '/profile', failureFlash: true }),
+//   function (req, res) {
+//     res.redirect('/');
+//   }
+// );
 
 //
  app.post('/users/auth/saml/callback',
