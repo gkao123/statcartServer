@@ -105,11 +105,7 @@ app.get('/auth/google/callback',
         successRedirect: '/profile',
         failureRedirect: '/',
         failureFlash: true
-      }),
-    function (req, res) {
-      res.redirect('/');
-    }
-  );
+      }));
 
  // app.post('auth/saml/callback',
  //    passport.authenticate('saml',
